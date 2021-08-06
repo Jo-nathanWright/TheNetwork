@@ -3,13 +3,17 @@
     <Navbar />
   </header>
   <main>
-    <router-view />
-  </main>
-  <footer>
-    <div class="bg-dark text-light text-center p-4">
-      Made with 💖 by CodeWorks
+    <div class="row vw-100">
+      <div class="col-md-2 bg-light">
+        <p class="text-center">
+          This is for the account info
+        </p>
+      </div>
+      <div class="col-md-10">
+        <router-view />
+      </div>
     </div>
-  </footer>
+  </main>
 </template>
 
 <script>
