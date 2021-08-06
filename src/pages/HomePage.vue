@@ -7,8 +7,13 @@
 </template>
 
 <script>
+import { postsService } from '../services/PostService'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup() {
+    postsService.getAllPosts()
+    postsService.getByPage(2)
+  }
 }
 </script>
 
