@@ -1,16 +1,18 @@
 <template>
-  <img class="rounded" :src="account.picture" alt="Profile Picture">
-  <p>{{ account.class }}</p>
-  <h3>{{ account.name }}</h3>
-  <p class="pt-3">
-    {{ account.github }}
-  </p>
-  <p class="pt-2">
-    {{ account.linkedin }}
-  </p>
-  <p class="pt-2">
-    📄 {{ account.resume }}
-  </p>
+  <div>
+    <img class="rounded-circle" :src="account.picture" alt="Profile Picture">
+    <p>{{ account.class }}</p>
+    <h3>{{ account.name }}</h3>
+    <p class="pt-3">
+      {{ account.github }}
+    </p>
+    <p class="pt-2">
+      {{ account.linkedin }}
+    </p>
+    <p class="pt-2">
+      📄 {{ account.resume }}
+    </p>
+  </div>
 </template>
 
 <script>
