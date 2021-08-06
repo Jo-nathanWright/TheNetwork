@@ -4,8 +4,8 @@
   </header>
   <main>
     <div class="row vw-100">
-      <div class="col-md-2 bg-dark text-center">
-        <SideBanner :promotions="promotions" />
+      <div class="col-md-2 bg-dark text-center d-flex flex-column">
+        <SideBanner :promotions="promotions" :account="account" />
       </div>
       <div class="col-md-10">
         <router-view />
@@ -31,7 +31,8 @@ export default {
     })
     return {
       appState: computed(() => AppState),
-      promotions: computed(() => AppState.promotional)
+      promotions: computed(() => AppState.promotional),
+      account: computed(() => AppState.account)
     }
   }
 }

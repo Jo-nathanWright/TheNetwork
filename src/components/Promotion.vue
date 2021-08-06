@@ -1,11 +1,11 @@
 <template>
   <div class="row">
-    <div class="col-12 bg-grey text-light mb-2">
+    <div class="col-12 bg-grey text-white mb-2">
       <p class="pt-2">
         {{ promotions.title }}
       </p>
       <a :href="promotions.linkURL">
-        <img class="pb-2" :src="promotions.square" height="180" alt="Promotional Piece">
+        <img class="pb-3 pl-3" :src="promotions.square" height="180" alt="Promotional Piece">
       </a>
     </div>
   </div>

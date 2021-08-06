@@ -1,6 +1,7 @@
 <template>
-  <div v-for="p in promotions" :key="p.id">
-    <Promotion :promotions="p" />
+  <div>
+    <SideProfile :account="account" />
+    <Promotion v-for="p in promotions" :key="p.id" :promotions="p" />
   </div>
 </template>
 
@@ -8,6 +9,10 @@
 export default {
   props: {
     promotions: {
+      type: Object,
+      required: true
+    },
+    account: {
       type: Object,
       required: true
     }
