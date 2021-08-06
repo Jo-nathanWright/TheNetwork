@@ -7,12 +7,11 @@
 </template>
 
 <script>
-import { postsService } from '../services/PostService'
+import { profileService } from '../services/ProfileService'
 export default {
   name: 'Home',
   setup() {
-    postsService.getAllPosts()
-    postsService.getByPage(2)
+    profileService.getPostsByProfile('60bf98cd59b893352f3128a4')
   }
 }
 </script>

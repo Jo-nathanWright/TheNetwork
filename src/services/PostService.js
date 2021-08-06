@@ -1,4 +1,4 @@
-import { AppState } from '../AppState'
+import { AppState } from '../AppState.js'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
@@ -10,15 +10,15 @@ class PostsService {
     AppState.post = res.data.posts
   }
 
-  async getById(id) {
-    const res = await api.get(`api/posts/${id}`)
-    // logger.log('This is the single post: ', res.data)
-    AppState.singlePost = res.data
+  async getByPage(page) {
+    const res = await api.get(`api/posts?page=${page}`)
+    // logger.log(res.data.posts)
+    AppState.post = res.data.posts
   }
 
-  async getByPage(page) {
-    const res = await api.get(`api/posts/?page=${page}`)
-    // logger.log(res.data.posts)
+  async getBySearch(query) {
+    const res = await api.get(`api/posts?query=${query}`)
+    logger.log(res.data.posts)
     AppState.post = res.data.posts
   }
 }
