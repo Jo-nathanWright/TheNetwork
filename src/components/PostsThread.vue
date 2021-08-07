@@ -1,14 +1,14 @@
 <template>
   <div class="row justify-content-center">
-    <PostCard v-for="p in posts" :key="p.id" :posts="p" />
+    <PostCard v-for="p in post" :key="p.id" :post="p" />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Posts',
+  name: 'Post',
   props: {
-    posts: {
+    post: {
       type: Object,
       required: true
     }

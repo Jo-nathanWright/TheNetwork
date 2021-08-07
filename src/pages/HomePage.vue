@@ -1,14 +1,9 @@
 <template>
   <div class="row">
-    <PostsThread :posts="posts" />
+    <PostsThread :post="post" />
   </div>
   <div class="col-md-11 m-5 d-flex justify-content-around">
-    <button class="btn btn-light" @click="decrease">
-      ‹ Newer
-    </button>
-    <button class="btn btn-light" @click="increase">
-      Older ›
-    </button>
+    <Navigation :pagepost="pagepost" />
   </div>
 </template>
 
@@ -17,34 +12,20 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostService'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Notifier'
-import { logger } from '../utils/Logger'
-let i = 1
 export default {
   name: 'Home',
   setup() {
     onMounted(async() => {
       try {
         await postsService.getAllPosts()
+        await postsService.getPostByPage()
       } catch (error) {
         Pop.toast(error, 'error')
       }
     })
     return {
-      posts: computed(() => AppState.post),
-      async increase() {
-        logger.log('I increased')
-        i++
-        await postsService.getByPage(i)
-      },
-      async decrease() {
-        if (i === 1) {
-          Pop.toast('There isn\'t any newer pages')
-        } else {
-          i--
-          await postsService.getByPage(i)
-        }
-        logger.log(i)
-      }
+      post: computed(() => AppState.post),
+      pagepost: computed(() => AppState.postByPage)
     }
   }
 }
