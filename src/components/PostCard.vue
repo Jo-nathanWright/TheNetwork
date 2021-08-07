@@ -15,15 +15,15 @@
         </div>
       </div>
       <div v-if="posts.imgURL">
-        <div class="col-md-3">
+        <div class="col-md-12">
           {{ posts.body }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-12">
           <img :src="posts.imgURL" alt="Blog Image">
         </div>
       </div>
       <div else>
-        <div class="col-md-6 pt-3">
+        <div class="col-md-12 pt-3">
           <h5>{{ posts.body }}</h5>
         </div>
       </div>

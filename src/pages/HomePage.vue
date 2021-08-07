@@ -3,10 +3,10 @@
     <PostsThread :posts="posts" />
   </div>
   <div class="col-md-11 m-5 d-flex justify-content-around">
-    <button class="btn btn-light">
+    <button class="btn btn-light" @click="decrease">
       ‹ Newer
     </button>
-    <button class="btn btn-light">
+    <button class="btn btn-light" @click="increase">
       Older ›
     </button>
   </div>
@@ -17,6 +17,8 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostService'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Notifier'
+import { logger } from '../utils/Logger'
+let i = 0
 export default {
   name: 'Home',
   setup() {
@@ -28,7 +30,17 @@ export default {
       }
     })
     return {
-      posts: computed(() => AppState.post)
+      posts: computed(() => AppState.post),
+      async increase() {
+        logger.log('I increased')
+        i++
+        await postsService.getByPage(i)
+      },
+      async decrease() {
+        logger.log('I decreased')
+        i--
+        await postsService.getByPage(i)
+      }
     }
   }
 }
