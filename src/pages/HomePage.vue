@@ -1,17 +1,35 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <h1 class="my-5 bg-dark text-light p-3 rounded d-flex align-items-center">
-      <span class="mx-2 text-white">ITS A POST</span>
-    </h1>
+  <div class="row">
+    <PostsThread :posts="posts" />
+  </div>
+  <div class="col-md-11 m-5 d-flex justify-content-around">
+    <button class="btn btn-light">
+      ‹ Newer
+    </button>
+    <button class="btn btn-light">
+      Older ›
+    </button>
   </div>
 </template>
 
 <script>
-import { profileService } from '../services/ProfileService'
+import { computed, onMounted } from '@vue/runtime-core'
+import { postsService } from '../services/PostService'
+import { AppState } from '../AppState.js'
+import Pop from '../utils/Notifier'
 export default {
   name: 'Home',
   setup() {
-    profileService.getPostsByProfile('60bf98cd59b893352f3128a4')
+    onMounted(async() => {
+      try {
+        await postsService.getAllPosts()
+      } catch (error) {
+        Pop.toast(error, 'error')
+      }
+    })
+    return {
+      posts: computed(() => AppState.post)
+    }
   }
 }
 </script>
