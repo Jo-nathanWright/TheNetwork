@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mt-5">
     <div v-if="account.id">
       <SideProfile :account="account" />
     </div>

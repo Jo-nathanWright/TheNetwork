@@ -18,7 +18,7 @@ import { postsService } from '../services/PostService'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Notifier'
 import { logger } from '../utils/Logger'
-let i = 0
+let i = 1
 export default {
   name: 'Home',
   setup() {
@@ -37,9 +37,13 @@ export default {
         await postsService.getByPage(i)
       },
       async decrease() {
-        logger.log('I decreased')
-        i--
-        await postsService.getByPage(i)
+        if (i === 1) {
+          Pop.toast('There isn\'t any newer pages')
+        } else {
+          i--
+          await postsService.getByPage(i)
+        }
+        logger.log(i)
       }
     }
   }
