@@ -30,12 +30,14 @@ class PostsService {
 
   async createPost(body) {
     const res = await api.post('api/posts', body)
-    AppState.post.push(res.data.posts)
+    logger.log(res.data.id)
+    AppState.post.push(res.data)
+    return res.data.id
   }
 
   async destroyPost(id) {
     await api.delete(`api/posts/${id}`)
-    AppState.posts = AppState.posts.filter(p => p.id !== id)
+    AppState.post = AppState.post.filter(p => p.id !== id)
   }
 }
 
