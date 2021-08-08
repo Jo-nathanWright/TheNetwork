@@ -1,4 +1,7 @@
 <template>
+  <div>
+    <PostForm />
+  </div>
   <div class="row">
     <PostsThread :post="post" />
   </div>
@@ -12,6 +15,7 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { postsService } from '../services/PostService'
 import { AppState } from '../AppState.js'
 import Pop from '../utils/Notifier'
+import PostForm from '../components/PostForm.vue'
 export default {
   name: 'Home',
   setup() {
@@ -27,6 +31,9 @@ export default {
       post: computed(() => AppState.post),
       pagepost: computed(() => AppState.postByPage)
     }
+  },
+  components: {
+    PostForm
   }
 }
 </script>
