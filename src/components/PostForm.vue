@@ -1,7 +1,7 @@
 <template>
   <div class="post-form">
     <form class="d-flex" @submit.prevent="createPost">
-      <div class="form-group">
+      <div class="form-group pt-3">
         <input
           type="text"
           name="body"
