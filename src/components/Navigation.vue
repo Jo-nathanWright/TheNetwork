@@ -14,7 +14,6 @@
 <script>
 import { postsService } from '../services/PostService'
 import { logger } from '../utils/Logger'
-import Pop from '../utils/Notifier'
 let i = 1
 export default {
   props: {

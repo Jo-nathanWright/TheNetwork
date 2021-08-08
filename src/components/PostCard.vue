@@ -6,7 +6,7 @@
           Delete
         </button>
       </div>
-      <div class="col-md-3 d-flex flex-row">
+      <div class="col-md-3 d-flex flex-row ml-4 align-items-center">
         <img class="rounded" :src="post.creator.picture" height="100" alt="Profile Picture">
         <div class="col-md-9">
           <div class="row flex-column justify-content-between">
@@ -19,16 +19,16 @@
           </div>
         </div>
       </div>
-      <div v-if="post.imgURL">
-        <div class="col-md-12">
-          {{ post.body }}
+      <div v-if="post.imgUrl">
+        <div class="col-md-11 ml-4 py-4">
+          <h5>{{ post.body }}</h5>
         </div>
-        <div class="col-md-12">
-          <img :src="post.imgURL" alt="Blog Image">
+        <div class="col-md-12 text-center pb-3">
+          <img :src="post.imgUrl" alt="Blog Image" width="650">
         </div>
       </div>
-      <div else>
-        <div class="col-md-12 pt-3">
+      <div v-else>
+        <div class="col-md-11 ml-4 py-4">
           <h5>{{ post.body }}</h5>
         </div>
       </div>
