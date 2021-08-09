@@ -1,11 +1,18 @@
 <template>
   <div class="profile">
-    <h1>This is a profile page</h1>
+    This will be the card
   </div>
 </template>
 
 <script>
+import Profile from '../components/Profile.vue'
 export default {
-  name: 'Profile'
+  name: 'Profile',
+  setup() {
+    return {}
+  }
+  // components: {
+  //   Profile
+  // }
 }
 </script>
