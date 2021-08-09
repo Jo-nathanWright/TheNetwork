@@ -1,3 +1,4 @@
+import { computed } from 'vue'
 import { AppState } from '../AppState.js'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
@@ -40,22 +41,16 @@ class PostsService {
     AppState.post = AppState.post.filter(p => p.id !== id)
   }
 
-  async editLikes(id, creatorId) {
-    const foundPost = AppState.post.find(p => p.id === id)
-    const liked = foundPost.likeIds.find(f => f !== id)
-    if (liked === undefined) {
-      foundPost.likeIds.push(creatorId)
-      await api.put(`api/posts/${id}`, foundPost)
-    } else if (liked) {
-      foundPost.likeIds.splice(creatorId)
-      await api.put(`api/posts/${id}`, foundPost)
+  async editLikes(user, postId) {
+    const foundPost = AppState.post.find(p => p.id === postId)
+    const foundPostId = foundPost.likeIds.indexOf(user)
+    if (foundPostId === -1) {
+      foundPost.likeIds.push(user)
+      await api.put(`api/posts/${postId}`, foundPost)
+    } else {
+      foundPost.likeIds.pop(user)
+      await api.put(`api/posts/${postId}`, foundPost)
     }
-
-    // foundPost.likeIds.push(id)
-    // await api.put(`api/posts/${id}`, foundPost)
-    // foundPost.likeIds.splice(id)
-    // await api.put(`api/posts/${id}`, foundPost)
-    // AppState.post = AppState.post
   }
 }
 

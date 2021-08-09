@@ -32,12 +32,17 @@
           <h5>{{ post.body }}</h5>
         </div>
       </div>
-      <div class="col-md-12 d-flex flex-row justify-content-end mb-2 action">
-        <p @click="like" class="mr-2">
+      <div class="col-md-12 d-flex flex-row justify-content-end mb-2 action" v-if="account.id">
+        <p @click="like(account, post.id)" class="mr-2">
           ❤
         </p>
         <p class="mr-1">
           {{ post.likeIds.length }}
+        </p>
+      </div>
+      <div class="col-md-12 d-flex flex-row justify-content-end mb-2 action" v-if="!account.id">
+        <p class="mr-1">
+          {{ post.likeIds.length }} Likes
         </p>
       </div>
     </div>
@@ -69,9 +74,9 @@ export default {
           Pop.toast(error, 'error')
         }
       },
-      async like() {
+      async like(user, postId) {
         try {
-          await postsService.editLikes(props.post.id, props.post.creatorId)
+          await postsService.editLikes(user.id, postId)
         } catch (error) {
           Pop.toast(error, 'error')
         }
