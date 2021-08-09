@@ -16,8 +16,11 @@
         </div>
       </div>
       <div class="col-md-4">
-        <h6>{{ profile.class }} Your Class</h6>
+        <h6>{{ profile.class }}</h6>
         <h5>{{ profile.name }}</h5>
+        <div v-if="profile.graduated === true">
+          🎓
+        </div>
         <p class="col-md-11 pt-3">
           {{ profile.bio }}
         </p>
