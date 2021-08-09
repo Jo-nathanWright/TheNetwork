@@ -7,7 +7,9 @@
         </button>
       </div>
       <div class="col-md-3 d-flex flex-row ml-4 align-items-center">
-        <img class="rounded" :src="post.creator.picture" height="100" alt="Profile Picture">
+        <router-link :to="{name: 'Profile'}">
+          <img class="rounded" :src="post.creator.picture" height="100" alt="Profile Picture">
+        </router-link>
         <div class="col-md-9">
           <div class="row flex-column justify-content-between">
             <div class="col">
@@ -87,10 +89,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-// .cover {
-//   object-fit: contain;
-// }
-
 .action {
   cursor: pointer;
 }

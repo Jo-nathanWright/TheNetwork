@@ -1,6 +1,8 @@
 <template>
   <div>
-    <img class="rounded-circle" :src="account.picture" alt="Profile Picture">
+    <router-link :to="{name: 'Profile'}">
+      <img class="rounded-circle action" :src="account.picture" alt="Profile Picture">
+    </router-link>
     <p>{{ account.class }}</p>
     <h3>{{ account.name }}</h3>
     <p class="pt-3">
@@ -28,3 +30,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.action {
+  cursor: pointer;
+}
+</style>
