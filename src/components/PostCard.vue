@@ -89,6 +89,7 @@ export default {
         logger.log(props.post.creatorId)
         try {
           await profileService.getProfileById(props.post.creatorId)
+          await profileService.getPostsByProfile(props.post.creatorId)
         } catch (error) {
           Pop.toast(error, 'eroor')
         }
