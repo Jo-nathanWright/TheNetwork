@@ -2,7 +2,10 @@
   <div class="row justify-content-center">
     <div class="col-md-11 mt-3 bg-white">
       <div class="row py-3">
-        <div class="col-md-2">
+        <div class="col-md-12">
+          <img class="rounded" :src="profile.coverImg" alt="Profile Image" width="1000">
+        </div>
+        <div class="col-md-2 pt-2">
           <img class="rounded" :src="profile.picture" alt="Profile Image" width="150">
         </div>
         <div class="col-md-1 offset-md-7">
