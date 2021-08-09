@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <PersonalProfile :user="user" />
+    <PersonalProfile :user="user" :account="account" />
   </div>
 </template>
 
@@ -12,7 +12,8 @@ export default {
   name: 'Profile',
   setup() {
     return {
-      user: computed(() => AppState.singleProfile)
+      user: computed(() => AppState.singleProfile),
+      account: computed(() => AppState.account)
     }
   },
   components: {
