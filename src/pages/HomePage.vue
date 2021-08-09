@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="d-flex justify-content-end pt-1">
+    <PostSearch />
+  </div>
+  <div v-if="account.id !== post.creatorId">
     <PostForm />
   </div>
   <div class="row">
@@ -28,6 +31,7 @@ export default {
       }
     })
     return {
+      account: computed(() => AppState.account),
       post: computed(() => AppState.post),
       pagepost: computed(() => AppState.postByPage)
     }

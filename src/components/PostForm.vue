@@ -11,6 +11,15 @@
           required
         />
       </div>
+      <div class="form-group pt-3">
+        <input
+          type="text"
+          name="imgUrl"
+          v-model="state.newPost.imgUrl"
+          class="form-control"
+          placeholder="Share an Image"
+        />
+      </div>
       <div class="d-flex align-items-center">
         <button type="submit" class="btn btn-outline-success">
           Post

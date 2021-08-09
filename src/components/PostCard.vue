@@ -14,7 +14,7 @@
               {{ post.creator.name }}
             </div>
             <div class="col-6">
-              NOW
+              {{ post.createdAt }}
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <h5>{{ post.body }}</h5>
         </div>
         <div class="col-md-12 text-center pb-3">
-          <img :src="post.imgUrl" alt="Blog Image" width="650">
+          <img :src="post.imgUrl" alt="Blog Image" width="700">
         </div>
       </div>
       <div v-else>
@@ -32,8 +32,13 @@
           <h5>{{ post.body }}</h5>
         </div>
       </div>
-      <div class="col-md-12 d-flex justify-content-end mb-2">
-        <button>Like</button>
+      <div class="col-md-12 d-flex flex-row justify-content-end mb-2 action">
+        <p @click="like" class="mr-2">
+          ❤
+        </p>
+        <p class="mr-1">
+          {{ post.likeIds.length }}
+        </p>
       </div>
     </div>
   </div>
@@ -63,8 +68,25 @@ export default {
         } catch (error) {
           Pop.toast(error, 'error')
         }
+      },
+      async like() {
+        try {
+          await postsService.editLikes(props.post.id, props.post.creatorId)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
       }
     }
   }
 }
 </script>
+
+<style scoped lang="scss">
+// .cover {
+//   object-fit: contain;
+// }
+
+.action {
+  cursor: pointer;
+}
+</style>
