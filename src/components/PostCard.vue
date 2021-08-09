@@ -8,7 +8,7 @@
       </div>
       <div class="col-md-3 d-flex flex-row ml-4 align-items-center">
         <router-link :to="{name: 'Profile'}">
-          <img class="rounded" :src="post.creator.picture" height="100" alt="Profile Picture">
+          <img class="rounded" :src="post.creator.picture" height="100" alt="Profile Picture" @click="updateProfile">
         </router-link>
         <div class="col-md-9">
           <div class="row flex-column justify-content-between">
@@ -56,6 +56,8 @@ import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { postsService } from '../services/PostService'
+import { profileService } from '../services/ProfileService'
+import { logger } from '../utils/Logger'
 export default {
   props: {
     post: {
@@ -81,6 +83,14 @@ export default {
           await postsService.editLikes(user.id, postId)
         } catch (error) {
           Pop.toast(error, 'error')
+        }
+      },
+      async updateProfile() {
+        logger.log(props.post.creatorId)
+        try {
+          await profileService.getProfileById(props.post.creatorId)
+        } catch (error) {
+          Pop.toast(error, 'eroor')
         }
       }
     }

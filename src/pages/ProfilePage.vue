@@ -1,18 +1,22 @@
 <template>
   <div class="profile">
-    This will be the card
+    <PersonalProfile :user="user" />
   </div>
 </template>
 
 <script>
-import Profile from '../components/Profile.vue'
+import { computed } from '@vue/runtime-core'
+import PersonalProfile from '../components/PersonalProfile.vue'
+import { AppState } from '../AppState'
 export default {
   name: 'Profile',
   setup() {
-    return {}
+    return {
+      user: computed(() => AppState.singleProfile)
+    }
+  },
+  components: {
+    PersonalProfile
   }
-  // components: {
-  //   Profile
-  // }
 }
 </script>

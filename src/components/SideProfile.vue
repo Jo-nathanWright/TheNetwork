@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-link :to="{name: 'Profile'}">
-      <img class="rounded-circle action" :src="account.picture" alt="Profile Picture">
+      <img class="rounded-circle action" :src="account.picture" alt="Profile Picture" @click="updateProfile">
     </router-link>
     <p>{{ account.class }}</p>
     <h3>{{ account.name }}</h3>
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { profileService } from '../services/ProfileService'
+import Pop from '../utils/Notifier'
 export default {
   props: {
     account: {
@@ -25,8 +27,16 @@ export default {
       required: true
     }
   },
-  setup() {
-    return {}
+  setup(props) {
+    return {
+      async updateProfile() {
+        try {
+          await profileService.getProfileById(props.account.id)
+        } catch (error) {
+          Pop.toast(error, 'error')
+        }
+      }
+    }
   }
 }
 </script>
