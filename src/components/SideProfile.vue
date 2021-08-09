@@ -32,6 +32,7 @@ export default {
       async updateProfile() {
         try {
           await profileService.getProfileById(props.account.id)
+          await profileService.getPostsByProfile(props.account.id)
         } catch (error) {
           Pop.toast(error, 'error')
         }

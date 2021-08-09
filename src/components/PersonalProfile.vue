@@ -25,7 +25,7 @@
     </div>
   </div>
   <div>
-    <PostCard :post="post" />
+    <PostsThread :post="post" />
   </div>
 </template>
 
@@ -34,7 +34,7 @@ import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
 import { profileService } from '../services/ProfileService'
-import PostCard from '../components/PostCard.vue'
+import PostsThread from '../components/PostsThread.vue'
 import { logger } from '../utils/Logger'
 export default {
   props: {
@@ -46,11 +46,11 @@ export default {
   setup(props) {
     return {
       profile: computed(() => AppState.singleProfile),
-      post: computed(() => AppState.getPostsByProfile),
+      post: computed(() => AppState.singlePost),
       async getPosts() {
         try {
           await profileService.getPostsByProfile(props.user.id)
-          logger.log(AppState.singleProfile)
+          logger.log('This is the Appstate', AppState.singleProfile)
         } catch (error) {
           Pop.toast(error, 'error')
         }
@@ -58,7 +58,7 @@ export default {
     }
   },
   components: {
-    PostCard
+    PostsThread
   }
 }
 </script>
