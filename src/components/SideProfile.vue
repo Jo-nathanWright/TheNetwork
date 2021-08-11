@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{name: 'Profile', params: account.id}">
+    <router-link :to="{name: 'Profile', params: {id: account.id} }">
       <img class="rounded-circle action" :src="account.picture" alt="Profile Picture" @click="updateProfile">
     </router-link>
     <p>{{ account.class }}</p>

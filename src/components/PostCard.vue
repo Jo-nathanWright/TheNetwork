@@ -7,7 +7,7 @@
         </button>
       </div>
       <div class="col-md-3 d-flex flex-row ml-4 align-items-center">
-        <router-link :to="{name: 'Profile', params: post.creatorId}">
+        <router-link :to="{name: 'Profile', params: {id: post.creatorId}}">
           <img class="rounded" :src="post.creator.picture" height="100" alt="Profile Picture" @click="updateProfile">
         </router-link>
         <div class="col-md-9">
