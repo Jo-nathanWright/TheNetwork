@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import { computed } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { reactive } from '@vue/reactivity'
 import { AppState } from '../AppState'
 import Pop from '../utils/Notifier'
@@ -125,6 +125,7 @@ import { profileService } from '../services/ProfileService'
 import PostsThread from '../components/PostsThread.vue'
 import { logger } from '../utils/Logger'
 import { accountService } from '../services/AccountService'
+import { useRoute } from 'vue-router'
 export default {
   props: {
     user: {
@@ -137,6 +138,14 @@ export default {
     }
   },
   setup(props) {
+    const route = useRoute()
+    onMounted(async() => {
+      try {
+        await profileService.getPostsByProfile(route.params.id)
+      } catch (error) {
+        logger.log(error, 'error')
+      }
+    })
     const state = reactive({
       profile: {}
     })
@@ -146,7 +155,7 @@ export default {
       post: computed(() => AppState.singlePost),
       async getPosts() {
         try {
-          await profileService.getPostsByProfile(props.user.id)
+          await profileService.getPostsByProfile(route.params.id)
           logger.log('This is the Appstate', AppState.singleProfile)
         } catch (error) {
           Pop.toast(error, 'error')
