@@ -1,5 +1,5 @@
 export const dev = window.location.origin.includes('localhost')
-export const baseURL = dev ? 'https://bcw-sandbox.herokuapp.com/' : ''
-export const domain = 'codeworksclassroom.auth0.com'
-export const clientId = 'pOXw2OGv1LsYi7LEBmDF04RLkXQvldml'
-export const audience = 'https://codeworksclassroom.com'
+export const baseURL = dev ? 'http://localhost:3000' : ''
+export const domain = 'codeworks-jonathan.us.auth0.com'
+export const clientId = 'DLuOHJT5ppl6RF22KJWztSrmtYe1BjSe'
+export const audience = 'https://mainApi.com'
